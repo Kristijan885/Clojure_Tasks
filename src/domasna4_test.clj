@@ -1,6 +1,6 @@
-(ns Task_1-test
+(ns domasna4-test
   (:require [clojure.test :refer :all]
-            [Task_1 :refer :all]))
+            [domasna4 :refer :all]))
 
 (deftest test-atomic
   (testing "atomic function tests"

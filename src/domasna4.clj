@@ -1,4 +1,4 @@
-(ns Task_1)
+(ns domasna4)
 
 ;; Група 1
 
