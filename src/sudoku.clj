@@ -1,4 +1,4 @@
-(ns Task_2)
+(ns sudoku)
 
 (defn inner_transform "Where the actual value substitution happens" [list]
   (cond
@@ -139,13 +139,10 @@
   (let [box-row (* 3 (quot row 3))
         box-col (* 3 (quot col 3))]
     (and
-      ;; Check row
       (not-any? #(= [value] (nth (nth board row) %))
                 (range 9))
-      ;; Check column
       (not-any? #(= [value] (nth (nth board %) col))
                 (range 9))
-      ;; Check box
       (not-any? #(= [value] (nth (nth board (+ box-row (quot % 3)))
                                  (+ box-col (mod % 3))))
                 (range 9)))))
@@ -179,11 +176,13 @@
                             row (inc col)])
                          (rest stack)))))))))))
 
+
+
 (defn simplify-solution [board]
   (mapv #(mapv (fn [cell] (first cell)) %) board))
 
 (defn print-line []
-  (println "------------------------+"))
+  (println "------------------------------------------------"))
 
 (defn get-cell-value [cell]
   (if (or (nil? cell) (= 0 cell))
@@ -215,6 +214,16 @@
   (let [solution (solve board)]
     (print-solution board solution)
     solution))
+
+(solve-with-viz   '[[5 3 0 0 7 0 0 0 0]
+                             [6 0 0 1 9 5 0 0 0]
+                             [0 9 8 0 0 0 0 6 0]
+                             [8 0 0 0 6 0 0 0 3]
+                             [4 0 0 8 0 3 0 0 1]
+                             [7 0 0 0 2 0 0 0 6]
+                             [0 6 0 0 0 0 2 8 0]
+                             [0 0 0 4 1 9 0 0 5]
+                             [0 0 0 0 8 0 0 7 9]])
 
 
 
